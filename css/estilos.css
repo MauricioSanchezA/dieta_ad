@@ -1,0 +1,133 @@
+body,html{
+	height: 100%;
+	width: 100%;
+}
+.main-container{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.main-container > .login,
+.main-container > .hero-body{
+	height: auto;
+	width: 100%;
+	max-width: 400px;
+	min-width: 300px;
+}
+
+.form-inline{
+	display: inline-flex;
+}
+.container:not(.is-max-desktop):not(.is-max-widescreen) {
+	max-width: 1844px;
+}
+
+/* Estilo del navbar */
+.navbar {
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 100px;
+    height: 100px; /* Ajusta la altura de tu navbar según sea necesario */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap; /* Añadir esta propiedad para que los elementos se ajusten correctamente */
+}
+
+/* Contenedor de la imagen */
+.navbar-image {
+    background-image: url('./img/logo_4.png'); /* Aquí va la ruta de tu imagen */
+    background-size: cover;
+    background-position: center; /* Centra la imagen */
+    height: 100%; /* Asegura que la imagen cubra toda la altura del navbar */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+/* Estilo adicional para la imagen si es necesario */
+.navbar-item img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+.navbar-item {
+    font-size: 1.50rem; /* o 1.25rem para más grande */
+}
+
+.navbar-item {
+    @extend .is-size-5;
+}
+
+/* Efectos de hover y estilo del navbar */
+.navbar-item a.navbar-link:hover, .navbar-item a.navbar-item:hover {
+    background-color: #e3f6ff;
+    color: #006400;
+    transform: scale(1.2);
+    transition: transform 0.3s, color 0.3s;
+}
+
+/* Asegurar que los submenús se alineen correctamente */
+.navbar-item.has-dropdown.is-hoverable.is-right .navbar-dropdown {
+    left: 100%;
+    top: 0;
+    margin-left: -1px;
+}
+
+/* Efecto de rotación para la flecha */
+.navbar-link .icon i {
+    transition: transform 0.3s ease;
+}
+
+.navbar-item.has-dropdown.is-active .navbar-link .icon i {
+    transform: rotate(45deg);
+}
+
+
+.navbar-dropdown {
+    display: none;
+}
+
+.navbar-item.has-dropdown.is-active .navbar-dropdown {
+    display: block;
+}
+
+/* Contenedor para la imagen de fondo */
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('./img/doctor-6676747_1280.jpg'); /* Ruta de la imagen */
+    background-size: cover; /* El fondo ocupa toda la pantalla */
+    background-position: center center; /* Centra la imagen */
+    background-attachment: fixed; /* Hace que la imagen se quede fija al hacer scroll */
+    opacity: 0.5; /* Aplica opacidad solo a la imagen */
+    z-index: -1; /* Pone la imagen detrás del formulario */
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5); /* Agrega sombra a la imagen */
+}
+
+/* Estilo para el contenedor principal */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* El contenedor ocupa toda la altura de la pantalla */
+    padding: 0 10px; /* Agrega margen en los lados */
+    position: relative; /* Necesario para posicionar la imagen de fondo detrás */
+}
+
+/* Estilo para el formulario */
+.box.login {
+    background-color: rgba(255, 255, 255, 1); /* Fondo blanco sin opacidad para el formulario */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Agrega sombra al formulario */
+    width: 100%;
+    max-width: 400px; /* Limita el tamaño máximo del formulario */
+    text-align: center;
+    position: relative;
+    z-index: 1; /* Asegura que el formulario esté encima de la imagen */
+}

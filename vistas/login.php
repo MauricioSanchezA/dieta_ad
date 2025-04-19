@@ -1,0 +1,177 @@
+<?php
+            $login_result = "";
+            if (isset($_POST['login_usuario']) && isset($_POST['login_clave'])) {
+                require_once "./php/main.php";
+                $login_result = include "./php/iniciar_sesion.php";
+            }
+        ?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIETA</title>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Otros estilos -->
+    <link rel="stylesheet" href="./css/estilos.css">
+</head>
+
+<div class="main-container">
+    <div class="background-carousel">
+        <div class="carousel-slide active" style="background-image: url('./img/food-366875_1280.jpg');"></div>
+        <div class="carousel-slide" style="background-image: url('./img/cook-2364221_1280.jpg');"></div>
+        <div class="carousel-slide" style="background-image: url('./img/salad-3382809_1280.jpg');"></div>
+    </div>
+    
+    <form class="box login" action="" method="POST" autocomplete="off">
+        <!-- Imagen del logo -->
+        <div class="logo-container">
+            <img src="./img/logo_4.png" alt="Logo" class="logo">
+        </div>
+
+        <h5 class="title is-5 has-text-centered is-uppercase">DIETAS ADICIONALES</h5>
+
+        <div class="field">
+            <label class="label">Usuario</label>
+            <div class="control">
+                <input class="input" type="text" name="login_usuario" pattern="[a-zA-Z0-9]{4,20}" maxlength="20" required >
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Clave</label>
+            <div class="control">
+                <input class="input" type="password" name="login_clave" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required >
+            </div>
+        </div>
+
+        <p class="has-text-centered mb-4 mt-3">
+            <button type="submit" class="button is-info is-rounded">Iniciar sesión</button>
+        </p>
+
+       <?php if (!empty($login_result)): ?>
+            <div class="mt-4">
+                <?= $login_result ?>
+            </div>
+        <?php endif; ?>
+    </form>
+</div>
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+
+    setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }, 10000); // Cambia cada 10 segundos
+</script>
+
+<style>
+    /* Contenedor para la imagen de fondo */
+    .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('./img/cook-2364221_1280.jpg'); /* Ruta de la imagen */
+        background-size: cover; /* El fondo ocupa toda la pantalla */
+        background-position: center center; /* Centra la imagen */
+        background-attachment: fixed; /* Hace que la imagen se quede fija al hacer scroll */
+        opacity: 0.5; /* Aplica opacidad solo a la imagen */
+        z-index: -1; /* Pone la imagen detrás del formulario */
+        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5); /* Agrega sombra a la imagen */
+    }
+
+    /* Estilo para el contenedor principal */
+    .main-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh; /* El contenedor ocupa toda la altura de la pantalla */
+        padding: 0 10px; /* Agrega margen en los lados */
+        position: relative; /* Necesario para posicionar la imagen de fondo detrás */
+    }
+
+    /* Estilo para el formulario */
+    .box.login {
+        background-color: rgba(255, 255, 255, 1); /* Fondo blanco sin opacidad para el formulario */
+        padding: 50px 30px; /* Aumenta el padding para hacerlo más largo */
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Agrega sombra al formulario */
+        width: 100%;
+        max-width: 400px; /* Limita el tamaño máximo del formulario */
+        text-align: center;
+        position: relative;
+        z-index: 1; /* Asegura que el formulario esté encima de la imagen */
+        min-height: 500px; /* Establece una altura mínima para hacerlo más largo */
+    }
+
+    /* Estilo para el contenedor del logo */
+    .logo-container {
+        text-align: center;
+        margin-bottom: 40px; /* Espacio debajo del logo */
+    }
+
+    /* Estilo para la imagen del logo */
+    .logo {
+        max-width: 190px; /* Tamaño máximo del logo */
+        height: auto; /* Mantiene la proporción del logo */
+    }
+
+    /* Estilo para el título */
+    .title.is-5 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    /* Estilo para los inputs */
+    .input {
+        margin-bottom: 20px; /* Espacio entre los campos */
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    /* Estilo para el botón */
+    .button.is-info {
+        padding: 12px 20px;
+        font-size: 16px;
+        width: 100%;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    /* Cambia el color del botón cuando se pasa el ratón por encima */
+    .button.is-info:hover {
+        background-color:rgb(102, 171, 136);
+    }
+
+    /* carrusel */
+    .background-carousel {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    overflow: hidden;
+    }
+
+    .carousel-slide {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        opacity: 0;
+        transition: opacity 2s ease-in-out;
+    }
+
+    .carousel-slide.active {
+        opacity: 0.5; /* igual a tu diseño original */
+        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+</style>
